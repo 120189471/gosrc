@@ -1,0 +1,7 @@
+输出目录位置 $(SolutionDir)$(Platform)\$(Configuration)\
+
+$(TargetPath)
+
+调试-工作目录 $(ProjectDir)
+
+中间目录配置 $(Platform)\$(Configuration)\

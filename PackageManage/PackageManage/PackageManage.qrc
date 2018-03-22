@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/PackageManage">
+        <file>Resources/timg.ico</file>
+    </qresource>
+</RCC>

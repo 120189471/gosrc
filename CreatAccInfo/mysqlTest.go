@@ -1,40 +1,38 @@
 package main
 
 import (
-	_ "github.com/go-sql-driver/mysql"
-"database/sql"
+	"database/sql"
 	"fmt"
-
+	_ "github.com/go-sql-driver/mysql"
+	"strconv"
+	"time"
 )
 
-
-type DBWorker struct{
+type DBWorker struct {
 	Dsn string
 }
 
-func checkerr(err error){
-	if err!=nil{
+func checkerr(err error) {
+	if err != nil {
 		panic(err)
 	}
 }
 
-type DBlinkinfo struct{
-	DBType string
-	DBUser string
-	DBPWD	string
-	DBIP string
-	DBPort string
+type DBlinkinfo struct {
+	DBType      string
+	DBUser      string
+	DBPWD       string
+	DBIP        string
+	DBPort      string
 	DBTableName string
-
 }
 
-type treadUserInfo struct{
-	seq int
-	userid string
-	name string
-	password string
-	isActive uint8
-	create_time	string
+type treadUserInfo struct {
+	userid           string
+	name             string
+	password         string
+	isActive         int
+	create_time      string
 	lasstUpdata_time string
 }
 
@@ -48,43 +46,16 @@ func main() {
 
 	//插入命令
 	//var treaduserinfo treadUserInfo
-	userseq, err := db.Query("SELECT * from mc_user")
-	checkerr(err)
-	for userseq.Next() {
 
-	var treaduserinfo treadUserInfo
-	fmt.Println(userseq)
-	userseq.Scan(&(treaduserinfo.seq))
+	tm := time.Now().Format("2006-01-02 15:04:05")
+	intreaduserinfo := treadUserInfo{"00010211", "000102", "888888", 1, tm, tm}
 
-	fmt.Println(treaduserinfo.seq)
-	fmt.Println(treaduserinfo.userid)
-	}
+	ret, err := db.Exec("INSERT into mc_user (seq,user_id,name,password,is_active,create_time,lastUpdate_time) VALUE (null,\"" + intreaduserinfo.userid + "\",\"" + intreaduserinfo.name + "\",\"" + intreaduserinfo.password + "\",\"" + strconv.Itoa(intreaduserinfo.isActive) + "\",\"" + intreaduserinfo.create_time + "\",\"" + intreaduserinfo.lasstUpdata_time + "\")")
 
-	//intreaduserinfo:= treadUserInfo{2,"000102","000102","888888",1,"11111",""}
-	//"+intreaduserinfo.seq+","+intreaduserinfo.userid+","+intreaduserinfo.name+","+intreaduserinfo.password+","+intreaduserinfo.isActive+","+intreaduserinfo.create_time+","+intreaduserinfo.lasstUpdata_time+")
-	ret,err:=db.Exec("INSERT into mc_user (seq,user_id,name,password,is_active,create_time,lastUpdate_time) VALUE (2,"2","2)")
-
-	checkerr(err)
-	fmt.Println(ret)
+	ins_id, _ := ret.LastInsertId()
+	fmt.Println(ins_id)
 
 }
 
-
-
 //	treaduserinfo:=treadUserInfo{}
 //	stmt err:=db.Prepare("INSERT ")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

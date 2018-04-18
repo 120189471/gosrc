@@ -3,13 +3,13 @@ package main
 import "github.com/lxn/walk"
 
 type myDialogUI struct {
-	labelAcc *walk.Label
-	labelNo        *walk.Label
-	labelErr       *walk.Label
-	pushButtonAcc  *walk.PushButton
+	labelAcc        *walk.Label
+	labelNo         *walk.Label
+	labelErr        *walk.Label
+	pushButtonAcc   *walk.PushButton
 	pushButtonMoney *walk.PushButton
-	lineEditAcc    *walk.LineEdit
-	lineEditNo     *walk.LineEdit
+	lineEditAcc     *walk.LineEdit
+	lineEditNo      *walk.LineEdit
 }
 
 func (w *MyDialog) init(owner walk.Form) (err error) {
@@ -39,7 +39,7 @@ func (w *MyDialog) init(owner walk.Form) (err error) {
 	}
 
 	//account
-	if w.ui.labelAcc,err=walk.NewLabel(w);err!=nil{
+	if w.ui.labelAcc, err = walk.NewLabel(w); err != nil {
 		return err
 	}
 	w.ui.labelAcc.SetName("labelAcc")
@@ -53,7 +53,7 @@ func (w *MyDialog) init(owner walk.Form) (err error) {
 		return err
 	}
 	//number
-	if w.ui.labelNo,err=walk.NewLabel(w);err!=nil{
+	if w.ui.labelNo, err = walk.NewLabel(w); err != nil {
 		return err
 	}
 	w.ui.labelNo.SetName("labelNo")
@@ -68,7 +68,7 @@ func (w *MyDialog) init(owner walk.Form) (err error) {
 	}
 
 	//error
-	if w.ui.labelErr,err=walk.NewLabel(w);err!=nil{
+	if w.ui.labelErr, err = walk.NewLabel(w); err != nil {
 		return err
 	}
 	w.ui.labelErr.SetName("labelErr")
@@ -80,7 +80,7 @@ func (w *MyDialog) init(owner walk.Form) (err error) {
 	}
 
 	//lineEdit account
-	if w.ui.lineEditAcc,err=walk.NewLineEdit(w);err!=nil{
+	if w.ui.lineEditAcc, err = walk.NewLineEdit(w); err != nil {
 		return err
 	}
 	w.ui.lineEditAcc.SetName("lineEditAcc")
@@ -92,7 +92,7 @@ func (w *MyDialog) init(owner walk.Form) (err error) {
 	}
 
 	//lineEdit noumber
-	if w.ui.lineEditNo,err=walk.NewLineEdit(w);err!=nil{
+	if w.ui.lineEditNo, err = walk.NewLineEdit(w); err != nil {
 		return err
 	}
 	w.ui.lineEditNo.SetName("lineEditNo")
@@ -104,7 +104,7 @@ func (w *MyDialog) init(owner walk.Form) (err error) {
 	}
 
 	//pushbutton great account
-	if w.ui.pushButtonAcc,err=walk.NewPushButton(w);err!=nil{
+	if w.ui.pushButtonAcc, err = walk.NewPushButton(w); err != nil {
 		return err
 	}
 	w.ui.pushButtonAcc.SetName("pushButtonAcc")
@@ -119,7 +119,7 @@ func (w *MyDialog) init(owner walk.Form) (err error) {
 	}
 
 	//pushbutton Recharge
-	if w.ui.pushButtonMoney,err=walk.NewPushButton(w);err!=nil{
+	if w.ui.pushButtonMoney, err = walk.NewPushButton(w); err != nil {
 		return err
 	}
 	w.ui.pushButtonMoney.SetName("pushButtonMoney")

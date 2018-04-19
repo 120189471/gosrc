@@ -5,7 +5,6 @@ import (
 )
 import (
 	"database/sql"
-	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/lxn/walk"
 	"io"
@@ -43,6 +42,7 @@ func init() {
 	if err != nil {
 		log.Fatalln("Failed to open error log file:", err)
 	}
+
 	/*
 		Trace = log.New(ioutil.Discard, "TRACE: ", log.Ltime|log.Lshortfile)
 		Info = log.New(os.Stdout, "Info: ", log.Ltime|log.Lshortfile)
@@ -77,7 +77,17 @@ func RunMyDialog(owner walk.Form) (int, error) {
 	dlg.ui.pushButtonAcc.Clicked().Attach(func() {
 		WiriteFile(dlg.ui.lineEditAcc.Text(), accfile)
 		addAcc(dlg.ui.lineEditAcc.Text())
+		dlg.ui.labelMsg.SetText("账号生成成功")
 	})
+
+	dlg.ui.pushButtonMoney.Clicked().Attach(func(){
+		if dlg.ui.stockChkBox.CheckState()==0{
+			
+
+		}
+
+	})
+
 
 	return dlg.Run(), nil
 }
@@ -137,32 +147,52 @@ func WiriteFile(qwin_account string, filePath string) (oerr error) {
 	return
 }
 
-func addAcc(account string) {
-	dblinkinfo := DBlinkinfo{"mysql", "root", "3edcXSW@1qaz", "192.168.3.190", "5873", "qmcounter"}
+func addAcc(account string) (err error){
+	dbinfo := DBlinkinfo{"mysql", "root", "3edcXSW@1qaz", "192.168.3.190", "5873", "qmcounter"}
 	//db,err:=sql.Open("mysql","root:3edcXSW@1qaz@tcp(127.0.0.1:3306)/qmcounter")
-	db, err := sql.Open(dblinkinfo.DBType, dblinkinfo.DBUser+":"+dblinkinfo.DBPWD+"@tcp("+dblinkinfo.DBIP+":"+dblinkinfo.DBPort+")/"+dblinkinfo.DBTableName)
+	db, err := sql.Open(dbinfo.DBType, dbinfo.DBUser+":"+dbinfo.DBPWD+"@tcp("+dbinfo.DBIP+":"+dbinfo.DBPort+")/"+dbinfo.DBTableName)
 	if err != nil {
 		Warning.Println(err)
+		return err
 	}
 	defer db.Close()
 	//dbins,err:=db.Prepare("INSERT mc_setting SET setting_key =test,setting_value=1.11")
-
-	//插入命令
-	//var treaduserinfo treadUserInfo
 
 	tm := time.Now().Format("2006-01-02 15:04:05")
 	//intreaduserinfo := treadUserInfo{account, account, "888888", 1, tm, tm}
 	Info.Println("INSERT into mc_user (user_id,name,password,is_active,create_time) VALUE (\"" + account + "\",\"" + account + "\",\"888888\",\"1\",\"" + tm + "\")")
 	//ret, err := db.Exec("INSERT into mc_user (user_id,name,password,is_active,create_time) VALUE (\""+account + "\",\"" + account + "\",\"888888\",\"1\",\"" + intreaduserinfo.create_time + "\")")
-	Info.Println("INSERT into mc_account (tradingday, user_id, account_type, inv_id, pre_balance, balance, available, create_time) VALUE (" + "'2000-1-1',\"" + account + "\",\"3\",\"" + account + "\",\"100000000\",\"100000000\",\"100000000\"," + tm + ")")
-	//db.Exec("INSERT into mc_account (tradingday, user_id, account_type, inv_id, pre_balance, balance, available, create_time) VALUE (" + "'2000-1-1',\"" + account + "\",\"1\",\"" + account + "\",\"100000000\",\"100000000\",\"100000000\",'" + tm + "')")
-	//db.Exec("INSERT into mc_account (tradingday, user_id, account_type, inv_id, pre_balance, balance, available, create_time) VALUE (" + "'2000-1-1',\"" + account + "\",\"3\",\"" + account + "\",\"100000000\",\"100000000\",\"100000000\",'" + tm + "')")
-	//db.Exec("INSERT into mc_account (tradingday, user_id, account_type, inv_id, pre_balance, balance, available, create_time) VALUE (" + "'2000-1-1',\"" + account + "\",\"4\",\"" + account + "\",\"100000000\",\"100000000\",\"100000000\",'" + tm + "')")
+	//Info.Println("INSERT into mc_account (tradingday, user_id, account_type, inv_id, pre_balance, balance, available, create_time) VALUE (" + "'2000-1-1',\"" + account + "\",\"3\",\"" + account + "\",\"100000000\",\"100000000\",\"100000000\"," + tm + ")")
+	ret, err :=db.Exec("INSERT into mc_account (tradingday, user_id, account_type, inv_id, pre_balance, balance, available, create_time) VALUE (" + "'2000-1-1',\"" + account + "\",\"1\",\"" + account + "\",\"100000000\",\"100000000\",\"100000000\",'" + tm + "')")
+	Info.Println(ret)
+	ret, err =db.Exec("INSERT into mc_account (tradingday, user_id, account_type, inv_id, pre_balance, balance, available, create_time) VALUE (" + "'2000-1-1',\"" + account + "\",\"3\",\"" + account + "\",\"100000000\",\"100000000\",\"100000000\",'" + tm + "')")
+	Info.Println(ret)
+	ret, err =db.Exec("INSERT into mc_account (tradingday, user_id, account_type, inv_id, pre_balance, balance, available, create_time) VALUE (" + "'2000-1-1',\"" + account + "\",\"4\",\"" + account + "\",\"100000000\",\"100000000\",\"100000000\",'" + tm + "')")
+	Info.Println(ret)
 	if err != nil {
 		Warning.Println(err)
 		panic(err)
 	}
-
 	//ins_id, _ := ret.LastInsertId()
 	//fmt.Println(ins_id)
+	return
+}
+
+func addMoney(account string, acctype string)(oerr error){
+	dbinfo := DBlinkinfo{"mysql", "root", "3edcXSW@1qaz", "192.168.3.190", "5873", "qmcounter"}
+	db,err:=sql.Open(dbinfo.DBType,dbinfo.DBUser+":"+dbinfo.DBPWD+"@tcp("+dbinfo.DBIP+":"+dbinfo.DBPort+")/"+dbinfo.DBTableName)
+	if err!=nil{
+		Warning.Println(err)
+		return err
+	}
+	defer db.Close()
+
+	tm:=time.Now().Format("2006-01-02 15:04:05")
+	ret, err :=db.Exec("insert into mc_transfer(tradingday,user_id,account_type,inv_id,trans_amount,direct,insert_datetime) value("+tm+","+account+","+acctype+","+account+","+tm)
+	Info.Println(ret)
+	if err!=nil{
+		Warning.Println(err)
+		panic(err)
+	}
+	return
 }

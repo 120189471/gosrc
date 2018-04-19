@@ -25,38 +25,12 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="labelAcc">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>40</y>
-     <width>30</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>账号</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelNo">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>80</y>
-     <width>30</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>个数</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButtonAcc">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>130</y>
-     <width>75</width>
+     <x>180</x>
+     <y>40</y>
+     <width>80</width>
      <height>23</height>
     </rect>
    </property>
@@ -64,50 +38,102 @@
     <string>生成账号</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="accMoneyPushBtn">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>130</y>
-     <width>75</width>
+     <x>180</x>
+     <y>110</y>
+     <width>80</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>补篮</string>
+    <string>蓝补</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditAcc">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>30</x>
      <y>40</y>
      <width>120</width>
      <height>20</height>
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEditNo">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>80</y>
-     <width>120</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelErr">
+  <widget class="QLabel" name="labelMsg">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>160</y>
+     <y>150</y>
      <width>250</width>
      <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>label err</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="stockchkBox">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>80</y>
+     <width>70</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>stock</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="optChkBox">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>80</y>
+     <width>70</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>opt</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="futChkBox">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>80</y>
+     <width>70</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>fut</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="accMony">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>110</y>
+     <width>110</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>110</y>
+     <width>30</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>万元</string>
    </property>
   </widget>
  </widget>

@@ -81,9 +81,14 @@ func RunMyDialog(owner walk.Form) (int, error) {
 	})
 
 	dlg.ui.pushButtonMoney.Clicked().Attach(func(){
-		if dlg.ui.stockChkBox.CheckState()==0{
-			
-
+		if dlg.ui.stockChkBox.CheckState()==1{
+			addMoney(dlg.ui.lineEditAcc.Text(),"1")
+		}
+		if dlg.ui.optChkBox.CheckState()==1{
+			addMoney(dlg.ui.lineEditAcc.Text(),"3")
+		}
+		if dlg.ui.futChkBox.CheckState()==1{
+			addMoney(dlg.ui.lineEditAcc.Text(),"3")
 		}
 
 	})
